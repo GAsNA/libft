@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rleseur <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/11/22 12:20:15 by rleseur           #+#    #+#             */
+/*   Updated: 2021/11/23 12:15:19 by rleseur          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
-int	nbrlen(int n)
+static int	nbrlen(int n)
 {
 	long	nb;
-	int	len;
+	int		len;
 
 	nb = n;
 	if (nb == 0)
@@ -25,8 +37,8 @@ int	nbrlen(int n)
 char	*ft_itoa(int n)
 {
 	char	*str;
-	int	len;
-	int	i;
+	int		len;
+	int		i;
 	long	nb;
 
 	nb = n;

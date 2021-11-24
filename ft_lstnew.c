@@ -1,37 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rleseur <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/22 12:21:31 by rleseur           #+#    #+#             */
-/*   Updated: 2021/11/24 12:23:10 by rleseur          ###   ########.fr       */
+/*   Created: 2021/11/23 14:22:08 by rleseur           #+#    #+#             */
+/*   Updated: 2021/11/23 17:20:07 by rleseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+t_list	*ft_lstnew(void *content)
 {
-	int		len_s1;
-	int		len_s2;
-	int		i;
-	char	*str;
+	t_list	*new;
 
-	if (!s1 || !s2)
+	new = malloc(sizeof(t_list));
+	if (!new)
 		return (0);
-	len_s1 = ft_strlen(s1);
-	len_s2 = ft_strlen(s2);
-	str = malloc((len_s1 + len_s2 + 1) * sizeof(char));
-	if (!str)
-		return (0);
-	i = -1;
-	while (s1[++i])
-		str[i] = s1[i];
-	i = -1;
-	while (s2[++i])
-		str[len_s1 + i] = s2[i];
-	str[len_s1 + len_s2] = '\0';
-	return (str);
+	new->content = content;
+	new->next = 0;
+	return (new);
 }
+
+/*int main()
+{
+	void *content = "Ceci est un content !";
+	t_list *elem = ft_lstnew(content);
+	ft_putstr_fd(elem->content, 1);
+}*/

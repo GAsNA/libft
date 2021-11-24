@@ -1,37 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rleseur <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/22 12:21:31 by rleseur           #+#    #+#             */
-/*   Updated: 2021/11/24 12:23:10 by rleseur          ###   ########.fr       */
+/*   Created: 2021/11/23 16:51:16 by rleseur           #+#    #+#             */
+/*   Updated: 2021/11/24 13:36:31 by rleseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	int		len_s1;
-	int		len_s2;
-	int		i;
-	char	*str;
+	t_list	*begin;
+	t_list	*back;
+	t_list	*tmp;
 
-	if (!s1 || !s2)
+	if (!lst)
 		return (0);
-	len_s1 = ft_strlen(s1);
-	len_s2 = ft_strlen(s2);
-	str = malloc((len_s1 + len_s2 + 1) * sizeof(char));
-	if (!str)
+	begin = ft_lstnew((*f)(lst->content));
+	if (!begin)
 		return (0);
-	i = -1;
-	while (s1[++i])
-		str[i] = s1[i];
-	i = -1;
-	while (s2[++i])
-		str[len_s1 + i] = s2[i];
-	str[len_s1 + len_s2] = '\0';
-	return (str);
+	lst = lst->next;
+	back = begin;
+	while (lst)
+	{
+		tmp = ft_lstnew((*f)(lst->content));
+		if (!tmp)
+		{
+			ft_lstclear(&begin, (*del));
+			return (0);
+		}
+		back->next = tmp;
+		back = back->next;
+		lst = lst->next;
+	}
+	return (begin);
 }

@@ -1,17 +1,29 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rleseur <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/11/22 12:21:15 by rleseur           #+#    #+#             */
+/*   Updated: 2021/11/24 13:36:45 by rleseur          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
-int	is_char(char s_c, char c)
+static int	is_char(char s_c, char c)
 {
 	if (s_c == c)
 		return (1);
 	return (0);
 }
 
-int	count_words(char const *s, char c)
+static int	count_words(char const *s, char c)
 {
 	int	i;
 	int	words;
-	
+
 	i = 0;
 	while (s[i] && is_char(s[i], c))
 		i++;
@@ -27,10 +39,10 @@ int	count_words(char const *s, char c)
 	return (words);
 }
 
-char	*ft_strdup_mod(char const *s, char c)
+static char	*ft_strdup_mod(char const *s, char c)
 {
 	char	*dup;
-	int	i;
+	int		i;
 
 	i = 0;
 	while (s[i] && !is_char(s[i], c))
@@ -45,13 +57,15 @@ char	*ft_strdup_mod(char const *s, char c)
 	return (dup);
 }
 
-char    **ft_split(char const *s, char c)
+char	**ft_split(char const *s, char c)
 {
-	int	words;
+	int		words;
 	char	**tab;
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 
+	if (!s)
+		return (0);
 	words = count_words(s, c);
 	tab = malloc((words + 1) * sizeof(char *));
 	if (!tab)
