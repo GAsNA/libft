@@ -19,10 +19,10 @@ char	*ft_strchr(const char *s, int c)
 	i = -1;
 	while (s[++i])
 	{
-		if (s[i] == c)
+		if (s[i] == (unsigned char)c)
 			return ((char *)&s[i]);
 	}
-	if (s[i] == c)
+	if (s[i] == (unsigned char)c)
 		return ((char *)&s[i]);
 	return (0);
 }
