@@ -6,7 +6,7 @@
 #    By: rleseur <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/23 13:54:15 by rleseur           #+#    #+#              #
-#    Updated: 2021/11/24 15:25:49 by rleseur          ###   ########.fr        #
+#    Updated: 2021/11/29 10:02:49 by rleseur          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -83,9 +83,5 @@ fclean:			clean
 				rm -f ${NAME}
 
 re:				fclean all
-
-so:
-	clang -nostartfiles -fPIC $(CFLAGS) $(SRCS) $(SRCS_BONUS)
-	gcc -nostartfiles -shared -o libft.so $(OBJS) $(OBJS_BONUS)
 
 .PHONY:			all clean fclean re

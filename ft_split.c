@@ -6,7 +6,7 @@
 /*   By: rleseur <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 12:21:15 by rleseur           #+#    #+#             */
-/*   Updated: 2021/11/24 13:36:45 by rleseur          ###   ########.fr       */
+/*   Updated: 2021/11/29 09:53:10 by rleseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,17 @@ static char	*ft_strdup_mod(char const *s, char c)
 	return (dup);
 }
 
+char	**to_free(char **tab)
+{
+	int	i;
+
+	i = -1;
+	while (tab[++i])
+		free(tab[i]);
+	free(tab);
+	return (0);
+}
+
 char	**ft_split(char const *s, char c)
 {
 	int		words;
@@ -77,7 +88,8 @@ char	**ft_split(char const *s, char c)
 		while (s[i] && is_char(s[i], c))
 			i++;
 		tab[j] = ft_strdup_mod(&s[i], c);
-		j++;
+		if (!tab[j++])
+			return (to_free(tab));
 		while (s[i] && !is_char(s[i], c))
 			i++;
 	}
