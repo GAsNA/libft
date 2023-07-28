@@ -1,6 +1,6 @@
 # Libft
 
-Small c library.
+Small c library. The goal is to re-code functions in c.
 <br />
 Compile the library with ``make``. Compile the library bonuses with ``make bonus``.
 
